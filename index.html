@@ -570,6 +570,68 @@
             align-items: flex-start;
             gap: 0.1em;
         }
+
+        /* Video Container Styles */
+        .video-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .video-wrapper {
+            position: relative;
+            max-width: 1200px;
+            width: 100%;
+            background: linear-gradient(145deg, #f8f9fa, #ffffff);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), 0 2px 8px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .video-wrapper:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15), 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-aspect-ratio {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .video-iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .video-caption {
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            .video-wrapper {
+                margin: 0 1rem;
+                padding: 1rem;
+            }
+            
+            .video-container {
+                margin: 2rem 0;
+            }
+        }
     </style>
 </head>
 
@@ -612,6 +674,7 @@
                     Dataset
                 </a>
             </div>
+            
             <h2 class="abstract-header">Abstract</h2>
             <p>
                 Paralinguistic vocalizations—including non-verbal sounds like laughter and breathing, as well as lexicalized interjections such as "uhm" and "oh"—are integral to natural spoken communication. Despite their importance in conveying affect, intent, and interactional cues, such cues remain largely overlooked in conventional automatic speech recognition (ASR) and text-to-speech (TTS) systems.
@@ -655,6 +718,24 @@ By unifying the recognition and generation of paralinguistic vocalizations, <str
         </section>
 
         <section id='model-demo'>
+            <!-- Video Demo Section -->
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <div class="video-aspect-ratio">
+                        <iframe 
+                            class="video-iframe"
+                            src="https://www.youtube.com/embed/lQpuwc8yRds?si=OHYuVmQLni5l6bnG" 
+                            title="NVSpeech Demo Video" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-caption">
+                        🎥 NVSpeech Pipeline Demo
+                    </div>
+                </div>
+            </div>
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
                 <a href="#tts-demo-section" id="tts-btn" class="demo-switch-btn active" style="text-decoration: none; display: inline-block;">Human-like TTS Demos</a>
                 <a href="#asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">Chinese Paralinguistic-Aware ASR
