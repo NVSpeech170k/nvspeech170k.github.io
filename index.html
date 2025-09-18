@@ -693,8 +693,8 @@
                 <div class="figure-caption" style="max-width:100%;margin:0 auto 1.5rem auto;">
                     <strong>Figure 1.</strong> The gap between conventional speech processing systems and paralinguistic-aware modeling.
                     <strong>(a)</strong> Common speech datasets omit paralinguistic vocalizations, while Emilia-NV provides word-level, explicit annotations.
-                    <strong>(b)</strong> Conventional ASR ignores such cues; our paralinguistic-aware ASR jointly transcribes lexical and non-lexical content.
-                    <strong>(c)</strong> Standard TTS generates only text-based speech, while our TTS supports explicit insertion of paralinguistic vocalizations for human-like synthesis.
+                    <strong>(b)</strong> Conventional ASR ignores such cues; our NVASR jointly transcribes lexical and non-lexical content.
+                    <strong>(c)</strong> Standard TTS generates only text-based speech, while CV2@Emilia-NV supports explicit insertion of paralinguistic vocalizations for human-like synthesis.
                 </div>
             </div>
             <h2 class="abstract-header">Pipeline</h2>
@@ -703,10 +703,9 @@
                 <div class="figure-caption" style="max-width:100%;margin:0 auto 1.5rem auto;">
                     <strong>Figure 2.</strong> Overview of Emilia-NV  pipeline with paralinguistic-aware speech recognition and generation. (1)
                     A word-level human annotated dataset of verbal and non-verbal vocalizations is first constructed.
-                    (2) A
-                    paralinguistic-aware ASR model is trained to jointly transcribe verbal and non-verbal content. (3)
-                    This model is used to automatically annotate large-scale unlabeled speech. (4) The expanded dataset
-                    enables training a controllable and expressive TTS system that explicitly renders paralinguistic
+                    (2) NVASR model is trained to jointly transcribe verbal and non-verbal content. (3)
+                    NVASR is used to automatically annotate large-scale unlabeled speech. (4) The expanded dataset
+                    enables training CV2@Emilia-NV that explicitly renders paralinguistic
                     cues.
                 </div>
             </div>
@@ -732,23 +731,23 @@
                 </div>
             </div> -->
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
-                <a href="#tts-demo-section" id="tts-btn" class="demo-switch-btn active" style="text-decoration: none; display: inline-block;">Human-like TTS Demos</a>
-                <a href="#asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">Chinese Paralinguistic-Aware ASR
-                    Demos</a>
-                <a href="#en-asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">English Paralinguistic-Aware ASR
-                    Demos</a>
+                <a href="#tts-demo-section" id="tts-btn" class="demo-switch-btn active" style="text-decoration: none; display: inline-block;">CV2@Emilia-NV Demos</a>
+                <a href="#asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">NVASR
+                    Demos (Mandarin)</a>
+                <a href="#en-asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">NVASR
+                    Demos (English)</a>
             </div>
             <div id="tts-demo" class="demo-panel" style="display:block;">
                 <div id="tts-demo-section"></div>
-                <h2 class='section-title'>TTS Performance After fintuned by Emilia-NV</h2>
+                <h2 class='section-title'>CV2@Emilia-NV Performance</h2>
                 <table>
                     <thead>
                         <tr>
                             <th style="font-size:1.3rem;font-weight:bold;">Paralinguistic Tags</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">CosyVoice Demo</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">CosyVoice2 Demo</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">Ints Demo</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">Chinese Target Text</th>
+                            <th style="font-size:1.3rem;font-weight:bold;">CV@Emilia-NV </th>
+                            <th style="font-size:1.3rem;font-weight:bold;">CV2@Emilia-NV </th>
+                            <th style="font-size:1.3rem;font-weight:bold;">Ints </th>
+                            <th style="font-size:1.3rem;font-weight:bold;">Mandarin Target Text</th>
                             <th style="font-size:1.3rem;font-weight:bold;">Translations</th>
                         </tr>
                         <tr>
@@ -1244,7 +1243,8 @@
             </div>
             <div id="asr-demo" class="demo-panel" style="display:block;">
                 <div id="asr-demo-section"></div>
-                <h2 class="section-title">Chinese Paralinguistic-Aware ASR Results</h2>
+                <h2 class="section-title">NVASR
+                    Demos (Mandarin)</h2>
                 <table>
                     <thead>
                         <tr>
@@ -1713,7 +1713,8 @@
 
             <div id="asr-demo" class="demo-panel" style="display:block;">
                 <div id="en-asr-demo-section"></div>
-                <h2 class="section-title">English Paralinguistic-Aware ASR Results</h2>
+                <h2 class="section-title">NVASR
+                    Demos (English)</h2>
                 <table>
                     <thead>
                         <tr>
