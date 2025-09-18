@@ -5,7 +5,7 @@
     <meta charset='UTF-8' />
     <meta http-equiv="Content-Type" content="text/html; charset=GB2312" />
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-    <title>NVspeech</title>
+    <title>Emilia-NV</title>
     <style>
         :root {
             --primary-color: #5b20b4bf;
@@ -180,7 +180,7 @@
         /* ASR Demo Table Column Widths */
         #asr-demo table th:nth-child(1) { width: 13%; } /* Paralinguistic Tags */
         #asr-demo table th:nth-child(2) { width: 15%; } /* ASR Audio */
-        #asr-demo table th:nth-child(3) { width: 18%; } /* SenseVoice-Small */
+        #asr-demo table th:nth-child(3) { width: 18%; } /* NVASR */
         #asr-demo table th:nth-child(4) { width: 18%; } /* Paraformer */
         #asr-demo table th:nth-child(5) { width: 18%; } /* English Translations */
         #asr-demo table th:nth-child(5) { width: 18%; } /* English Translations */
@@ -638,7 +638,7 @@
 <body>
     <div class='container'>
         <section>
-            <h1 class='paper-title'>NVSpeech: An Integrated and Scalable Pipeline for Human-Like Speech Modeling with Paralinguistic Vocalizations</h1>
+            <h1 class='paper-title'>Emilia-NV: A Non-Verbal Speech Dataset with Word-Level Annotation for Human-Like Speech Modeling</h1>
             <div style="text-align:center; margin-bottom:1.2rem; font-size:1.15rem; line-height:1.7;">
                 Huan Liao<sup>1*</sup>, Qinke Ni<sup>1*</sup>, Yuancheng Wang<sup>1</sup>, Yiheng Lu<sup>1</sup>,<br>
                 Haoyue Zhan<sup>2</sup>, Pengyuan Xie<sup>2</sup>, Qiang Zhang<sup>2</sup>, Zhizheng Wu<sup>1</sup><br>
@@ -656,7 +656,7 @@
                     </svg>
                     Paper
                 </a>
-                <a href="https://github.com/Hannieliao/NVSpeech" target="_blank" rel="noopener"
+                <a href="https://github.com/Hannieliao/Emilia-NV" target="_blank" rel="noopener"
                     style="display: flex; align-items: center; gap: 0.5rem; background: #e6dbfa; color: #5b20b4; border: none; border-radius: 6px; padding: 0.7rem 1.6rem; font-size: 1rem; font-weight: 600; text-decoration: none; box-shadow: 0 1px 4px rgba(91,32,180,0.07); transition: background 0.2s;">
                     <svg width="20" height="20" fill="none" viewBox="0 0 20 20" style="vertical-align: middle;">
                         <path fill="#5b20b4" fill-opacity="0.18"
@@ -664,7 +664,7 @@
                     </svg>
                     Github
                 </a>
-                <a href="https://huggingface.co/datasets/Hannie0813/NVSpeech170k" target="_blank" rel="noopener"
+                <a href="https://huggingface.co/datasets/amphion/Emilia-NV" target="_blank" rel="noopener"
                     style="display: flex; align-items: center; gap: 0.5rem; background: #e6dbfa; color: #5b20b4; border: none; border-radius: 6px; padding: 0.7rem 1.6rem; font-size: 1rem; font-weight: 600; text-decoration: none; box-shadow: 0 1px 4px rgba(91,32,180,0.07); transition: background 0.2s;">
                     <svg width="20" height="20" fill="none" viewBox="0 0 20 20" style="vertical-align: middle;">
                         <text x="3" y="8" font-size="5" fill="#5b20b4" font-family="monospace">10101</text>
@@ -677,36 +677,31 @@
             
             <h2 class="abstract-header">Abstract</h2>
             <p>
-                Paralinguistic vocalizations—including non-verbal sounds like laughter and breathing, as well as lexicalized interjections such as "uhm" and "oh"—are integral to natural spoken communication. Despite their importance in conveying affect, intent, and interactional cues, such cues remain largely overlooked in conventional automatic speech recognition (ASR) and text-to-speech (TTS) systems.
-We present <strong>NVSpeech</strong>, an integrated and scalable pipeline that bridges the recognition and synthesis of paralinguistic vocalizations, encompassing dataset construction, ASR modeling, and controllable TTS.
-
-<strong>(1)</strong> We introduce a manually annotated dataset of <u>48,430</u> human-spoken utterances with 18 word-level paralinguistic categories.
-<strong>(2)</strong> We develop the <i>paralinguistic-aware ASR model</i>, which treats paralinguistic cues as inline decodable tokens (e.g., "You're so funny [Laughter]"), enabling joint lexical and non-verbal transcription. This model is then used to automatically annotate a large corpus, the first large-scale Chinese dataset of <u>174,179</u> utterances (<u>573</u> hours) with word-level alignment and paralingustic cues.
-<strong>(3)</strong> We finetune zero-shot TTS models on both human- and auto-labeled data to enable explicit control over paralinguistic vocalizations, allowing context-aware insertion at arbitrary token positions for human-like speech synthesis.
-By unifying the recognition and generation of paralinguistic vocalizations, <strong>NVSpeech</strong> offers the first open, large-scale, word-level annotated pipeline for expressive speech modeling in Mandarin, integrating recognition and synthesis in a scalable and controllable manner.
+                Paralinguistic vocalizations—including non-verbal sounds like laughter, breathing, and lexicalized interjections such as “uhm”—are integral to spoken communication. However, existing corpora rarely provide large-scale, word-level annotations of such cues, leaving them overlooked in conventional ASR and TTS research. Therefore, we present <strong>Emilia-NV</strong>, the first large-scale Mandarin corpus with word-level annotations for both lexical content and 18 paralinguistic vocalizations. It comprises 48k human-annotated utterances and 174k automatically labeled utterances (573h)
+                The key contributions are:
+                (1) a high-quality, fine-grained dataset of paralinguistic vocalizations that establishes a new benchmark for expressive speech modeling;
+                (2) a paralinguistic-aware ASR framework that scales manual annotations to large corpora, enabling joint transcription of lexical and non-verbal content;
+                (3) controllable zero-shot TTS with explicit token-level vocalization control, enabling natural and expressive synthesis.
 
             </p>
             <h2 class="abstract-header">Motivation</h2>
-                In real-world speech, verbal and non-verbal cues are inherently intertwined. To truly capture human-like communication, ASR and TTS systems should move beyond lexical content to model paralinguistic signals in a temporally aligned and semantically coherent manner. As shown in Figure 1, we identify three critical gaps in current speech modeling:
-                    <strong>(1)</strong> Most existing speech datasets lack word-level annotations of paralinguistic vocalizations, limiting supervision and evaluation of expressive models.
-                    <strong>(2)</strong> Conventional ASR systems omit such cues, hindering their application in tasks requiring human-like understanding and interaction.
-                    <strong>(3)</strong> Current TTS models fail to synthesize paralinguistic vocalizations with explicit, token-level control, resulting in speech that lacks spontaneity and expressivity.
+                Existing corpora suffer key limitations: (1) most lack word-level alignment of paralinguistic and lexical content, preventing precise contextual modeling; (2) limited speaker diversity or recording conditions, with scarce Chinese speech coverage; (3) jointly annotated datasets either cover few paralinguistic categories or only at sentence level.
+                To overcome these limitations, we present <strong>Emilia-NV</strong>, the first large-scale Mandarin corpus with word-level annotations for both lexical and PV.
 
             <div style="margin: 2rem 0 4rem 0;">
-                <img src="moti_para.png" alt="Figure 1" style="display:block;max-width:100%;height:auto;">
+                <img src="motivation.png" alt="Figure 1" style="display:block;max-width:100%;height:auto;">
                 <div class="figure-caption" style="max-width:100%;margin:0 auto 1.5rem auto;">
                     <strong>Figure 1.</strong> The gap between conventional speech processing systems and paralinguistic-aware modeling.
-                    <strong>(a)</strong> Common speech datasets omit paralinguistic vocalizations, while NVSpeech provides word-level, explicit annotations.
+                    <strong>(a)</strong> Common speech datasets omit paralinguistic vocalizations, while Emilia-NV provides word-level, explicit annotations.
                     <strong>(b)</strong> Conventional ASR ignores such cues; our paralinguistic-aware ASR jointly transcribes lexical and non-lexical content.
                     <strong>(c)</strong> Standard TTS generates only text-based speech, while our TTS supports explicit insertion of paralinguistic vocalizations for human-like synthesis.
                 </div>
             </div>
             <h2 class="abstract-header">Pipeline</h2>
             <div style="margin: 2rem 0 0 0;">
-                <img src="asr-pipeline.png" alt="Figure 2" style="display:block;max-width:100%;height:auto;">
+                <img src="pipeline.png" alt="Figure 2" style="display:block;max-width:100%;height:auto;">
                 <div class="figure-caption" style="max-width:100%;margin:0 auto 1.5rem auto;">
-                    <strong>Figure 2.</strong> Overview of our paralinguistic-aware speech recognition and generation
-                    pipeline. (1)
+                    <strong>Figure 2.</strong> Overview of Emilia-NV  pipeline with paralinguistic-aware speech recognition and generation. (1)
                     A word-level human annotated dataset of verbal and non-verbal vocalizations is first constructed.
                     (2) A
                     paralinguistic-aware ASR model is trained to jointly transcribe verbal and non-verbal content. (3)
@@ -719,23 +714,23 @@ By unifying the recognition and generation of paralinguistic vocalizations, <str
 
         <section id='model-demo'>
             <!-- Video Demo Section -->
-            <div class="video-container">
+            <!-- <div class="video-container">
                 <div class="video-wrapper">
                     <div class="video-aspect-ratio">
                         <iframe 
                             class="video-iframe"
                             src="https://www.youtube.com/embed/lQpuwc8yRds?si=OHYuVmQLni5l6bnG" 
-                            title="NVSpeech Demo Video" 
+                            title="Emilia-NV Demo Video" 
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerpolicy="strict-origin-when-cross-origin" 
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-caption">
-                        🎥 NVSpeech Pipeline Demo
+                        🎥 Emilia-NV Pipeline Demo
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div style="display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;">
                 <a href="#tts-demo-section" id="tts-btn" class="demo-switch-btn active" style="text-decoration: none; display: inline-block;">Human-like TTS Demos</a>
                 <a href="#asr-demo-section" id="asr-btn" class="demo-switch-btn" style="text-decoration: none; display: inline-block;">Chinese Paralinguistic-Aware ASR
@@ -745,7 +740,7 @@ By unifying the recognition and generation of paralinguistic vocalizations, <str
             </div>
             <div id="tts-demo" class="demo-panel" style="display:block;">
                 <div id="tts-demo-section"></div>
-                <h2 class='section-title'>TTS Performance After fintuned by NVspeech</h2>
+                <h2 class='section-title'>TTS Performance After fintuned by Emilia-NV</h2>
                 <table>
                     <thead>
                         <tr>
@@ -1255,7 +1250,7 @@ By unifying the recognition and generation of paralinguistic vocalizations, <str
                         <tr>
                             <th style="font-size:1.3rem;font-weight:bold;">Paralinguistic Tags</th>
                             <th style="font-size:1.3rem;font-weight:bold;">ASR demos</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">SenseVoice-Small</th>
+                            <th style="font-size:1.3rem;font-weight:bold;">NVASR</th>
                             <th style="font-size:1.3rem;font-weight:bold;">Paraformer</th>
                             <th style="font-size:1.3rem;font-weight:bold;">Ground-Truth</th>
                             <th style="font-size:1.3rem;font-weight:bold;">English Translations</th>
@@ -1724,7 +1719,7 @@ By unifying the recognition and generation of paralinguistic vocalizations, <str
                         <tr>
                             <th style="font-size:1.3rem;font-weight:bold;">Paralinguistic Tags</th>
                             <th style="font-size:1.3rem;font-weight:bold;">ASR demos</th>
-                            <th style="font-size:1.3rem;font-weight:bold;">SenseVoice-Small</th>
+                            <th style="font-size:1.3rem;font-weight:bold;">NVASR</th>
                             <th style="font-size:1.3rem;font-weight:bold;">Whisper</th>
                             <th style="font-size:1.3rem;font-weight:bold;">Groud-Truth</th>
                         </tr>
